@@ -6,8 +6,8 @@ const express = require("express");
 const app = express();
 
 const options = {
-  key: fs.readFileSync(path.join(__dirname, "localhost-key.pem")),
-  cert: fs.readFileSync(path.join(__dirname, "localhost.pem")),
+  key: fs.readFileSync(path.join(__dirname, "localhost+1-key.pem")),
+  cert: fs.readFileSync(path.join(__dirname, "localhost+1.pem")),
 };
 
 app.use(express.static(__dirname));
