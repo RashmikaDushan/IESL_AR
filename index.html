@@ -1,54 +1,53 @@
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-    <style>
-      #example-scanning-overlay {
-      }
-      #example-scanning-overlay.hidden {
-        display: none;
-      }
-    </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body
-    style="
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <style>
+    #example-scanning-overlay {}
+
+    #example-scanning-overlay.hidden {
+      display: none;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body style="
       font-family: 'Poppins', system-ui;
       font-weight: 400;
       font-style: normal;
       color: rgb(255, 255, 255);
-    "
-  >
-    <div
-      id="example-scanning-overlay"
-      class="hidden"
-      style="text-align: center"
-    >
-      <div style="height: 40vh"></div>
-      <h3 style="padding: 10vw; text-shadow: 0 0 10px #000000">
-        Point the camera at entrance arch staying 3 meters away from the
-        entrance arch.
-      </h3>
-      <div style="height: 15vh"></div>
-      <h5 style="font-weight: 500;">Copyright © 2024 University of Moratuwa</h5>
-    </div>
-    <a-scene mindar-image="uiScanning: #example-scanning-overlay;imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: true" device-orientation-permission-ui="enabled: false">
-      <a-assets>
-        <img id="card" src="cse_target.jpeg" />
-        <a-asset-item id="avatarModel" src="quantum_computer.glb"></a-asset-item>
-      </a-assets>
+    ">
+  <div id="example-scanning-overlay" class="hidden" style="text-align: center">
+    <div style="height: 40vh"></div>
+    <h3 style="padding: 10vw; text-shadow: 0 0 10px #000000">
+      Point the camera at entrance arch staying 3 meters away from the
+      entrance arch.
+    </h3>
+    <div style="height: 15vh"></div>
+    <h5 style="font-weight: 500;">Copyright © 2024 University of Moratuwa</h5>
+  </div>
+  <a-scene
+    mindar-image="filterMinCF:0.00001; filterBeta: 0.01;warmupTolerance: 60;missTolerance: 20;uiScanning: #example-scanning-overlay;imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.mind;"
+    color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: true"
+    device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="card" src="cse_target.jpeg" />
+      <a-asset-item id="avatarModel" src="quantum_computer.glb"></a-asset-item>
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
+      <a-gltf-model rotation="0 0 0 " position="0 0 0" scale="1 1 1" src="#avatarModel"
+        animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
+    </a-entity>
+  </a-scene>
+</body>
 
-      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-      <a-entity mindar-image-target="targetIndex: 0">
-        <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
-        <a-gltf-model rotation="0 0 0 " position="0 0 0" scale="1 1 1" src="#avatarModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
-      </a-entity>
-    </a-scene>
-  </body>
 </html>
