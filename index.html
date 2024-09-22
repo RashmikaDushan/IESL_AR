@@ -32,7 +32,7 @@
     ">
   <div id="scanning-overlay" class="hidden" style="text-align: center">
     <div style="height: 40vh"></div>
-    <h3 style="padding: 10vw; text-shadow: 0 0 10px #000000">
+    <h3 style="padding: 10vw; text-shadow: 0 0 15px #000000">
       Point the camera at entrance arch staying 3 meters away from the
       entrance arch.
     </h3>
@@ -41,23 +41,44 @@
   </div>
   <div id="loading-overlay" class="hidden" style="text-align: center">
     <div style="height: 20vh"></div>
-    <h3 style="padding: 10vw; text-shadow: 0 0 10px #000000">
+    <h3 style="padding: 10vw; color: #000000; font-weight: 600;">
       Proudly presented by University of Moratuwa
     </h3>
   </div>
   
   <a-scene
     mindar-image="filterMinCF:0.00001; filterBeta: 0.01;warmupTolerance: 60;missTolerance: 20;uiLoading:#loading-overlay;uiScanning: #scanning-overlay;imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.mind;"
-    color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: true"
+    color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights; toneMapping:ACESFilmic; exposure:0.5; antialias:true" vr-mode-ui="enabled: true;"
     device-orientation-permission-ui="enabled: false">
     <a-assets>
       <img id="card" src="cse_target.jpeg" />
       <a-asset-item id="avatarModel" src="quantum_computer.glb"></a-asset-item>
+      <img id="reflectionMap" src="Reflection.jpg">
     </a-assets>
+    <script>
+      AFRAME.registerComponent('reflection-texture', {
+        init: function () {
+          var scene = this.el.sceneEl.object3D;
+          var renderer = this.el.sceneEl.renderer;
+
+          // Load the texture for reflection
+          var textureLoader = new THREE.TextureLoader();
+          textureLoader.load(document.querySelector('#reflectionMap').src, (texture) => {
+            texture.mapping = THREE.EquirectangularReflectionMapping;
+
+            // Apply texture to environment and models for reflection
+            scene.environment = texture; // Use it as the reflection environment
+          });
+        }
+      });
+
+      // Attach the reflection-texture component to the scene
+      document.querySelector('a-scene').setAttribute('reflection-texture', '');
+    </script>
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
     <a-entity mindar-image-target="targetIndex: 0">
       <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
-      <a-gltf-model rotation="0 0 0 " position="0 0 0" scale="1 1 1" src="#avatarModel"
+      <a-gltf-model rotation="0 0 0 " position="0 0 0" scale="1 1 1" src="#avatarModel" material="sphericalEnvMap: #reflectionMap"
         animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
     </a-entity>
   </a-scene>
