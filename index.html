@@ -16,6 +16,12 @@
     #loading-overlay.hidden {
       display: none;
     }
+
+    #error-overlay {}
+
+    #error-overlay.hidden {
+      display: none;
+    }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,9 +51,14 @@
       Proudly presented by University of Moratuwa
     </h3>
   </div>
-  
+  <div id="error-overlay" class="hidden" style="text-align: center">
+    <div style="height: 20vh"></div>
+    <h3 style="padding: 10vw; color: #000000; font-weight: 600;">
+      Something went wrong. Please contact UOM stall.
+    </h3>
+  </div>
   <a-scene
-    mindar-image="filterMinCF:0.00001; filterBeta: 0.01;warmupTolerance: 60;missTolerance: 20;uiLoading:#loading-overlay;uiScanning: #scanning-overlay;imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.mind;"
+    mindar-image="filterMinCF:0.00001; filterBeta: 0.01;warmupTolerance: 60;missTolerance: 20;uiError:#error-overlay; uiLoading:#loading-overlay; uiScanning:#scanning-overlay;imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.mind;"
     color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights; toneMapping:ACESFilmic; exposure:0.5; antialias:true" vr-mode-ui="enabled: true;"
     device-orientation-permission-ui="enabled: false">
     <a-assets>
@@ -78,7 +89,7 @@
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
     <a-entity mindar-image-target="targetIndex: 0">
       <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
-      <a-gltf-model rotation="0 0 0 " position="0 0 0" scale="1 1 1" src="#avatarModel" material="sphericalEnvMap: #reflectionMap"
+      <a-gltf-model rotation="0 0 0 " position="0 0 0" scale="1 1 1" src="#avatarModel"
         animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
     </a-entity>
   </a-scene>
