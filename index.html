@@ -5,9 +5,9 @@
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
   <style>
-    #example-scanning-overlay {}
+    #scanning-overlay {}
 
-    #example-scanning-overlay.hidden {
+    #scanning-overlay.hidden {
       display: none;
     }
   </style>
@@ -24,7 +24,7 @@
       font-style: normal;
       color: rgb(255, 255, 255);
     ">
-  <div id="example-scanning-overlay" class="hidden" style="text-align: center">
+  <div id="scanning-overlay" class="hidden" style="text-align: center">
     <div style="height: 40vh"></div>
     <h3 style="padding: 10vw; text-shadow: 0 0 10px #000000">
       Point the camera at entrance arch staying 3 meters away from the
@@ -34,7 +34,7 @@
     <h5 style="font-weight: 500;">Copyright © 2024 University of Moratuwa</h5>
   </div>
   <a-scene
-    mindar-image="filterMinCF:0.00001; filterBeta: 0.01;warmupTolerance: 60;missTolerance: 20;uiScanning: #example-scanning-overlay;imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.mind;"
+    mindar-image="filterMinCF:0.00001; filterBeta: 0.01;warmupTolerance: 60;missTolerance: 20;uiScanning: #scanning-overlay;imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.mind;"
     color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: true"
     device-orientation-permission-ui="enabled: false">
     <a-assets>
