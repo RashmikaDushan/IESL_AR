@@ -1,3 +1,6 @@
 .DS_Store
 localhost+1-key.pem
 localhost+1.pem
+models/sword.glb
+server.js
+target_new.mind
